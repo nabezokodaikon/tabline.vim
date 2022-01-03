@@ -39,7 +39,7 @@ function! s:tabpage_label(n)
     return hi . ' ' . no . mod . sp . bufname . ' ' . '%T%#TabLineFill#'
 endfunction
 
-function! s:makeTabLine()
+function! MakeTabLine()
     let titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
     let sep = '|'  
     let tabpages = join(titles, sep) . sep . '%#TabLineFill#%T'
@@ -47,6 +47,6 @@ function! s:makeTabLine()
     return tabpages . '%=' . info  
 endfunction
 
-function! make#tabline() abort
-    set tabline=%!s:makeTabLine()
+function! tabline#make() abort
+    set tabline=%!MakeTabLine()
 endfunction

@@ -8,4 +8,4 @@ if exists('g:loaded_tabline')
 endif
 let g:loaded_tabline = 1
 
-command! MakeTabline call make#tabline()
+command! TablineMake call tabline#make()

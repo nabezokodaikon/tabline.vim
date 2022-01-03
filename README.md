@@ -1,11 +1,15 @@
 # tabline.vim
 Customize tabline
 
-## Install
-### dein.vim
+## Usage
+### packer.nvim
 ```
-[[plugins]]
-repo = 'nabezokodaikon/tabline.vim'
+use {
+  'nabezokodaikon/tabline.vim',
+  opt = true,
+  event = { 'BufEnter' },
+  config = function() vim.cmd [[TablineMake]] end
+}
 ```
 
 ## Author
