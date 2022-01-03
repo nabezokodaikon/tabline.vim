@@ -3,16 +3,6 @@
 " AUTHOR:  nabezokodaikon <nabezoko.daikon@gmail.com>
 " License: MIT license
 "=============================================================================
-set tabline=%!MakeTabLine()
-
-function! MakeTabLine()
-    let titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
-    let sep = '|'  
-    let tabpages = join(titles, sep) . sep . '%#TabLineFill#%T'
-    let info = fnamemodify(getcwd(), ":~") . ' '
-    return tabpages . '%=' . info  
-endfunction
-
 function! s:tabpage_label(n)
 
     " t:title と言う変数があったらそれを使う。
@@ -47,4 +37,16 @@ function! s:tabpage_label(n)
     let hi = a:n is tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
 
     return hi . ' ' . no . mod . sp . bufname . ' ' . '%T%#TabLineFill#'
+endfunction
+
+function! s:makeTabLine()
+    let titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
+    let sep = '|'  
+    let tabpages = join(titles, sep) . sep . '%#TabLineFill#%T'
+    let info = fnamemodify(getcwd(), ":~") . ' '
+    return tabpages . '%=' . info  
+endfunction
+
+function! make#tabline() abort
+    set tabline=%!s:makeTabLine()
 endfunction
